@@ -1,0 +1,339 @@
+{
+	"variables": [],
+	"info": {
+		"name": "grab-a-grocery",
+		"_postman_id": "58ff68ff-0f88-987b-7944-824a94b393ce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"description": "",
+			"item": [
+				{
+					"name": "GET USERS",
+					"request": {
+						"url": "{{localhost}}/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5YzE0M2RiLTlkOTEtNDY2Zi04MmQzLWZmYjU5ZmM3YTNhZSIsImZpcnN0X25hbWUiOiJHZWxvIiwibGFzdF9uYW1lIjoiQXRpZW56YSIsInVzZXJuYW1lIjoiZ2VsbzMiLCJyb2xlIjpudWxsLCJlbWFpbCI6Im1hYUBlbWFpbC5jb20iLCJwaG9uZV9udW1iZXIiOm51bGwsImlhdCI6MTU4NjUyNjg4N30.gWeY8MGFwdJ1r-bTQ9X-n8A7BDbmNurWdlN37Bvg36M",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"maa\",\n\t\"first_name\" : \"Mark Angelo\",\n\t\"last_name\" : \"Atienza\",\n\t\"email\" : \"maangeloatienza@gmail.com\",\n\t\"password\" : \"12345\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USERS",
+					"request": {
+						"url": "{{localhost}}/users/afffce0f-4dcb-4b66-b1e4-81cd19f64a8f",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\" : \"password\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE USER",
+					"request": {
+						"url": "{{localhost}}/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\" : \"Gelo\",\n\t\"last_name\" : \"Atienza\",\n\t\"username\" : \"gelo3\",\n\t\"password\" : \"12345\",\n\t\"email\" : \"maa@email.com\",\n\t\"address\" : \"Malinta LBL\",\n\t\"phone_number\" : \"09755655696\"\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET USER",
+					"request": {
+						"url": "{{localhost}}/users/08ff1efd-da4d-41f4-b9e5-3b34eb88b64e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USER",
+					"request": {
+						"url": "{{localhost}}/users/delete/407ae76c-e9b0-4477-ac62-3d66737f4f40",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROLES",
+			"description": "",
+			"item": [
+				{
+					"name": "GET ROLES",
+					"request": {
+						"url": "{{localhost}}/roles/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"superuser\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE ROLE",
+					"request": {
+						"url": "{{localhost}}/roles/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"admit\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ROLE",
+					"request": {
+						"url": "{{localhost}}/roles/4478f6fc-a0ca-4527-aec0-31515bd1a079",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"admin\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ROLE",
+					"request": {
+						"url": "{{localhost}}/roles/delete/4478f6fc-a0ca-4527-aec0-31515bd1a079",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET ROLE",
+					"request": {
+						"url": "{{localhost}}/roles/c2d68d59-6993-4a0d-80d9-631ab43aa2c7",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BOOKINGS",
+			"description": "",
+			"item": [
+				{
+					"name": "GET BOOKINGS",
+					"request": {
+						"url": "{{localhost}}/bookings",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE BOOKINGS",
+					"request": {
+						"url": "{{localhost}}/bookings",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"booked_by\" : \"407ae76c-e9b0-4477-ac62-3d66737f4f40\",\n\t\"booking_date\" : \"2020-04-15\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTHENTICATION",
+			"description": "",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"url": "{{localhost}}/user/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"gelo3\",\n\t\"password\" : \"12345\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCTS",
+			"description": "",
+			"item": [
+				{
+					"name": "GET PRODUCTS",
+					"request": {
+						"url": "{{localhost}}/products/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE PRODUCT",
+					"request": {
+						"url": "{{localhost}}/products/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Ariel\",\n\t\"price\" : 7.50\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUCT",
+					"request": {
+						"url": "{{localhost}}/products/74646377-e67a-4307-88be-918cb7b8e022",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PRODUCT",
+					"request": {
+						"url": "{{localhost}}/products/74646377-e67a-4307-88be-918cb7b8e022",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"availability\" : 0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PRODUCT",
+					"request": {
+						"url": "{{localhost}}/products/delete/74646377-e67a-4307-88be-918cb7b8e022",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
