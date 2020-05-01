@@ -175,9 +175,10 @@ const store = async (req, res, next) => {
         }, 500);
     }
 
-
     let [error, validate] = await Global.exe(BookingItem.validate(res, {
         product_id: data.product_id,
+        user_id : data.user_id,
+        guest_user : data.guest_user
     }));
 
     if (error) {
@@ -189,6 +190,13 @@ const store = async (req, res, next) => {
 
     let [fail,productUp] = await Global.exe(Product.fetch(res,data.product_id));
     
+    if(!validate){
+        return Global.fail(res, {
+            message: 'Already on cart',
+            context: 'Data already exists'
+        });
+    }
+
     if (fail) {
         return Global.fail(res, {
             message: 'Error validating products',

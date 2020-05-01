@@ -89,8 +89,27 @@ const verify = async (res, where) => {
     return true;
 }
 
-const validate = async (res, where) => {
-    let query = `SELECT * FROM bookingItems WHERE product_id = '${where.product_id}' AND user_id IS NOT NULL OR guest_user IS NOT NULL AND deleted IS NULL`;
+const validate = async (res, body) => {
+    
+    let where = ` WHERE deleted IS NULL AND transaction_id IS NULL AND product_id = '${body.product_id}' `;
+    
+    
+    if(body.user_id){
+        where += `
+            AND user_id = '${body.user_id}'
+        `
+    }
+
+    if(body.guest_user){
+        where += `
+            AND  guest_user = '${body.guest_user}' 
+        `
+    }
+
+
+    let query = `SELECT * FROM bookingItems ${where}`;
+
+    console.log(query)
     
     let [err, bookingItems] = await Global.exe(mysql.build(query).promise());
 
@@ -102,10 +121,11 @@ const validate = async (res, where) => {
     }
 
     if (bookingItems.length) {
-        return Global.fail(res, {
-            message: 'Already on cart',
-            context: 'Data already exists'
-        });
+        // return Global.fail(res, {
+        //     message: 'Already on cart',
+        //     context: 'Data already exists'
+        // });
+        return false;
     }
 
     return true;
