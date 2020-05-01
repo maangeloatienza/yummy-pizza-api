@@ -91,9 +91,16 @@ const index = async (req, res, next) => {
         }, 404);
     }
 
+    let total = 0.0;
+
+    bookingItems.map(item=>{
+        total = + total +item.subtotal;
+    })
+
 
     return Global.success(res, {
         data: bookingItems,
+        total,
         count,
         page,
         limit,
@@ -266,8 +273,9 @@ const update = async (req, res, next) => {
         }, 500);
     }
 
-    data.subtotal = data.quantity ? data.quantity * bookingItemUp.price : bookingItemUp.subtotal;
-
+    data.subtotal = data.quantity ? data.quantity * bookingItemUp[0].price : bookingItemUp[0].subtotal;
+    console.log(data.quantity);
+    console.log(bookingItemUp[0]);
 
     let [err, booking] = await Global.exe(mysql.build(query, data).promise());
 

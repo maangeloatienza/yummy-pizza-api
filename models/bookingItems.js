@@ -58,7 +58,7 @@ const fetch = async (res, data, user) => {
 
 
     [err, bookingItems] = await Global.exe(mysql.build(query).promise());
-    console.log(bookingItems);
+    
     return bookingItems;
 }
 
@@ -109,7 +109,7 @@ const validate = async (res, body) => {
 
     let query = `SELECT * FROM bookingItems ${where}`;
 
-    console.log(query)
+ 
     
     let [err, bookingItems] = await Global.exe(mysql.build(query).promise());
 
@@ -134,7 +134,7 @@ const validate = async (res, body) => {
 const update = async (res,data,where) =>{
     let query = `UPDATE bookingItems SET ? ${where}`
 
-        console.log(query);
+       
     let [err, bookingItems] = await Global.exe(mysql.build(query,data).promise())
 
     if (err) {

@@ -168,8 +168,8 @@ const store = async (req, res, next) => {
 
 
     let query = `INSERT INTO transactions SET ?`;
-    let euro = 61;
-    let usd = 51;
+    let euro = 55.66;
+    let usd = 50.61;
 
     if (data instanceof Error) {
         return Global.fail(res, {
@@ -231,7 +231,7 @@ const store = async (req, res, next) => {
     data.total_usd = data.total/usd;
     data.id = uuid();
     data.created = new Date();
-    console.log('SUBTOTAL: ------> ',data);
+   
 
 
     let [err, transaction] = await Global.exe(mysql.build(query,data).promise());
