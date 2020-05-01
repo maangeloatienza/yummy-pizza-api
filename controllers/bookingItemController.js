@@ -192,7 +192,7 @@ const store = async (req, res, next) => {
     if (fail) {
         return Global.fail(res, {
             message: 'Error validating products',
-            context: error
+            context: fail
         }, 500);
     }
 
@@ -246,7 +246,10 @@ const update = async (req, res, next) => {
         }, 500);
     }
 
-    let [fail,bookingItemUp] = await Global.exe(BookingItem.fetch(res,id));
+    let [fail,bookingItemUp] = await Global.exe(BookingItem.fetch(res,{
+        id: id,
+        transaction : false
+    }));
     
     if (fail) {
         return Global.fail(res, {

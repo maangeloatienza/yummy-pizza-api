@@ -26,9 +26,23 @@ const count = async (res, where, offset) => {
     return bookingItems[0].total;
 }
 
-const fetch = async (res, id) => {
+const fetch = async (res, data, user) => {
 
-    let where = ` WHERE bookingItem.deleted is NULL AND bookingItem.id = '${id}'`;
+    let where = ` WHERE bookingItem.deleted is NULL AND bookingItem.transaction_id IS NULL `;
+    
+    if (data.id){
+        where += `
+                AND bookingItem.id = '${data.id}'
+        `;
+    }
+
+    if (data.transaction) {
+        where += `
+            AND user_id = '${user}' \
+            OR  guest_user = '${user}' \
+        `
+    }
+
     let query = `
             SELECT \
             bookingItem.*, \
@@ -42,9 +56,10 @@ const fetch = async (res, id) => {
 
     let err, bookingItems;
 
-    [err, bookingItems] = await Global.exe(mysql.build(query).promise());
 
-    return bookingItems[0];
+    [err, bookingItems] = await Global.exe(mysql.build(query).promise());
+    console.log(bookingItems);
+    return bookingItems;
 }
 
 
@@ -96,8 +111,25 @@ const validate = async (res, where) => {
     return true;
 }
 
+const update = async (res,data,where) =>{
+    let query = `UPDATE bookingItems SET ? ${where}`
+
+        console.log(query);
+    let [err, bookingItems] = await Global.exe(mysql.build(query,data).promise())
+
+    if (err) {
+        return Global.fail(res, {
+            message: 'Error fetching data',
+            context: err
+        }, 500);
+    }
+
+    return true;
+}
+
 
 module.exports = {
+    update,
     fetch,
     count,
     verify,

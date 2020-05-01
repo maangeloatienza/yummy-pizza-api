@@ -42,7 +42,11 @@ router.post('/booking-items',                           __.bookingItemController
 router.put ('/booking-items/:id',                       __.bookingItemController.update);
 router.delete('/booking-items/delete/:id',                __.bookingItemController.remove);
 
-
+// TRANSACTIONS
+router.get ('/transactions',                           __.transactionController.index);
+router.get ('/transactions/:id',                       __.transactionController.show);
+router.post('/transactions',                           __.transactionController.store);
+router.put ('/transactions/delete/:id',                __.transactionController.remove);
 
 // PRODUCTS
 router.get ('/products',                                __.productController.index);

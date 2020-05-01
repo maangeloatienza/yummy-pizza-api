@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS grocery_db;
+CREATE DATABASE IF NOT EXISTS yummy_pizza_db;
 
-ALTER DATABASE grocery_db CHARACTER SET utf32 COLLATE utf32_general_ci;
+ALTER DATABASE yummy_pizza_db CHARACTER SET utf32 COLLATE utf32_general_ci;
 
-USE grocery_db;
+USE yummy_pizza_db;
 
 CREATE TABLE roles (
   `id` VARCHAR(64) NOT NULL PRIMARY KEY,
@@ -71,11 +71,14 @@ CREATE TABLE bookingItems (
 CREATE TABLE transactions (
   `id` VARCHAR(64) NOT NULL PRIMARY KEY,
   `code` VARCHAR(10) NOT NULL,
+  `user_id` VARCHAR(64) NOT NULL,
+  `first_name` VARCHAR(100) NOT NULL,
+  `last_name` VARCHAR(100) NOT NULL,
   `delivery_address` LONGTEXT NOT NULL,
-  `delivery_cost` VARCHAR(12) NOT NULL,
-  `total` VARCHAR(12) NOT NULL,
-  `total_euro` VARCHAR(12) NOT NULL,
-  `total_us` VARCHAR(12) NOT NULL,
+  `delivery_cost` FLOAT NOT NULL,
+  `total` FLOAT NOT NULL,
+  `total_euro` FLOAT NOT NULL,
+  `total_usd` FLOAT NOT NULL,
   `created` DATETIME  NULL,
   `updated` DATETIME  NULL,
   `deleted` DATETIME  NULL

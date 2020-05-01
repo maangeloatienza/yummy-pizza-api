@@ -276,7 +276,7 @@ const update = async (req, res, next) => {
     }
 
     data.updated = new Date();
-    console.log(data);
+    
     let [err, booking] = await Global.exe(mysql.build(query,data).promise());
 
     if (err) {
