@@ -243,7 +243,7 @@ const store = async (req, res, next) => {
     }
 
     return Global.success(res, {
-        message: 'Data successfully created',
+        message: 'Checkout successfully',
         context: 'Successfully created'
     }, 200);
 }

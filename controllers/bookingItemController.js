@@ -80,8 +80,6 @@ const index = async (req, res, next) => {
             ON product.id = bookingItem.product_id \
             ${where} \
             ${offset}`;
-
-    console.log(query);
    
     let [err, bookingItems] = await Global.exe(mysql.build(query)
         .promise());
@@ -237,7 +235,7 @@ const store = async (req, res, next) => {
     }
 
     return Global.success(res, {
-        message: 'Data successfully created',
+        message: 'Added to cart',
         context: 'Successfully created'
     }, 200);
 }
