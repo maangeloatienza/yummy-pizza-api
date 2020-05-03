@@ -166,7 +166,6 @@ const store = async (req, res, next) => {
         .form_data(reqBody)
         .from(req.body);
 
-
     let query = `INSERT INTO transactions SET ?`;
     let euro = 55.66;
     let usd = 50.61;

@@ -24,18 +24,25 @@ const index = async (req, res, next) => {
     const {
         sort_id,
         sort_desc,
-        user
+        user,
+        guest
     } = req.query;
 
     let response = [];
-    let where = ` WHERE bookingItem.deleted IS null AND bookingItem.transaction_id IS null `;
+    let where = ` WHERE bookingItem.transaction_id IS NULL AND bookingItem.deleted IS NULL`;
 
     if (user){
         where += `
-            AND bookingItem.user_id = '${user}' OR bookingItem.guest_user = '${user}'
+            AND bookingItem.user_id = '${user}'
         `;
     }
     
+    if (guest){
+        where += `
+            AND bookingItem.guest_user = '${guest}'
+        `;
+    }
+
     if (sort_id) {
         where += `
             ORDER BY ${sort_id} ${sort_desc ? sort_desc : ASC}
@@ -56,6 +63,7 @@ const index = async (req, res, next) => {
     let query = `
             SELECT \
             bookingItem.id, \
+            bookingItem.transaction_id, \
             bookingItem.user_id, \
             bookingItem.guest_user, \
             bookingItem.subtotal, \
@@ -72,7 +80,9 @@ const index = async (req, res, next) => {
             ON product.id = bookingItem.product_id \
             ${where} \
             ${offset}`;
+
     console.log(query);
+   
     let [err, bookingItems] = await Global.exe(mysql.build(query)
         .promise());
     
@@ -274,8 +284,7 @@ const update = async (req, res, next) => {
     }
 
     data.subtotal = data.quantity ? data.quantity * bookingItemUp[0].price : bookingItemUp[0].subtotal;
-    console.log(data.quantity);
-    console.log(bookingItemUp[0]);
+
 
     let [err, booking] = await Global.exe(mysql.build(query, data).promise());
 
