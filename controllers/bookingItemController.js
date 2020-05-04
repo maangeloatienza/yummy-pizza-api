@@ -29,7 +29,7 @@ const index = async (req, res, next) => {
     } = req.query;
 
     let response = [];
-    let where = ` WHERE bookingItem.transaction_id IS NULL AND bookingItem.deleted IS NULL`;
+    let where = ` WHERE bookingItem.quantity > 0 AND bookingItem.transaction_id IS NULL AND bookingItem.deleted IS NULL  `;
 
     if (user){
         where += `
