@@ -74,6 +74,7 @@ CREATE TABLE transactions (
   `user_id` VARCHAR(64) NOT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,
+  `contact_number` VARCHAR(15) NOT NULL,
   `delivery_address` LONGTEXT NOT NULL,
   `delivery_cost` FLOAT NOT NULL,
   `total` FLOAT NOT NULL,

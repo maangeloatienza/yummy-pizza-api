@@ -13,6 +13,7 @@ const reqBody = {
     user_id : '',
     first_name : '', 
     last_name : '', 
+    contact_number: '',
     delivery_address : '',
     _total : 0.0,
     delivery_cost : 0.0,
@@ -31,6 +32,7 @@ const index = async (req,res,next)=>{
 
     const {
         code,
+        user,
         first_name,
         last_name,
         total,
@@ -42,9 +44,16 @@ const index = async (req,res,next)=>{
 
     let where = ` WHERE transactions.deleted IS null  `;
 
-    if (sort_id) {
+   
+    if (user) {
         where += `
-            ORDER BY ${sort_id} ${sort_desc ? sort_desc : ASC}
+            AND user_id = '${user}'
+        `;
+    }
+
+    if (code) {
+        where += `
+            AND code = '${code}'
         `;
     }
 
@@ -56,33 +65,42 @@ const index = async (req,res,next)=>{
 
     if (first_name) {
         where += `
-            AND code = '${first_name}'
+            AND first_name = '${first_name}'
         `;
     }
 
     if (last_name) {
         where += `
-            AND code = '${last_name}'
+            AND last_name = '${last_name}'
         `;
     }
 
     if (total) {
         where += `
-            AND code = '${total}'
+            AND total = '${total}'
         `;
     }
 
     if (total_usd) {
         where += `
-            AND code = '${total_usd}'
+            AND total_usd = '${total_usd}'
         `;
     }
 
     if (total_euro) {
         where += `
-            AND code = '${total_euro}'
+            AND tota_euro = '${total_euro}'
         `;
     }
+
+    if (sort_id) {
+        where += `
+            ORDER BY ${sort_id} ${sort_desc ? sort_desc : 'DESC'}
+        `;
+    }
+
+
+    
 
     let [error, count] = await Global.exe(Transaction.count(res, where));
 
@@ -99,6 +117,8 @@ const index = async (req,res,next)=>{
             FROM transactions transactions\
             ${where} \
             ${offset}`;
+
+    console.log('CONTROLLER',query);
 
     let [err, transaction] = await Global.exe(mysql.build(query)
         .promise());

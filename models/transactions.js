@@ -10,7 +10,6 @@ const count = async (res, where, offset) => {
             FROM transactions transactions \
             ${where}
             `;
-    
     let err, transactions;
 
     [err, transactions] = await Global.exe(mysql.build(query).promise());
