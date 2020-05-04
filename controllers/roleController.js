@@ -114,7 +114,6 @@ const store = async (req, res, next) => {
         .form_data(reqBody)
         .from(req.body);
 
-    console.log(data);
 
     let query = `INSERT INTO roles SET ?`;
 
@@ -140,7 +139,6 @@ const store = async (req, res, next) => {
     data.id = uuid();
     data.created = new Date();
 
-    console.log('store user: ', data);
     let [err, role] = await Global.exe(mysql.build(query,data).promise());
 
     if (err) {

@@ -72,8 +72,6 @@ const login = async(req,res,next)=>{
 
 
         if(!success){
-
-            console.log(data.password,user[0].password)
             return Global.fail(res, {
                 message: 'Error validating user',
                 context: 'Failed to login'
