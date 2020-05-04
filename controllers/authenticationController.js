@@ -73,7 +73,7 @@ const login = async(req,res,next)=>{
 
         if(!success){
             return Global.fail(res, {
-                message: 'Error validating user',
+                message: 'Incorrect username/password',
                 context: 'Failed to login'
             }, 500);
         }
