@@ -11,7 +11,8 @@ const reqBody = {
     first_name : '',
     last_name : '',
     email : '',
-    password : ''
+    password : '',
+    phone_number : ''
 };
 
 const optBody = {
@@ -19,7 +20,8 @@ const optBody = {
     _first_name : '',
     _last_name : '',
     _email : '',
-    _password : ''
+    _password : '',
+    _phone_number: ''
 };
 
 const index = async(req,res,next)=>{

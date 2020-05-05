@@ -260,7 +260,7 @@ const update = async (req, res, next) => {
         }, 500);
     }
 
-    let [error, verify] = await Global.exe(BookingItem.verify(res, `id = '${id}'`));
+    let [error, verify] = await Global.exe(BookingItem.verify(res, `id = '${id}' AND quantity >= 1`));
 
     if (error) {
         return Global.fail(res, {
@@ -273,7 +273,8 @@ const update = async (req, res, next) => {
         id: id,
         transaction : false
     }));
-    
+    console.log('BOOKING ITEM UP', bookingItemUp)
+
     if (fail) {
         return Global.fail(res, {
             message: 'Error updating booking item',

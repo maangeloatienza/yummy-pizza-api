@@ -118,8 +118,6 @@ const index = async (req,res,next)=>{
             ${where} \
             ${offset}`;
 
-    console.log('CONTROLLER',query);
-
     let [err, transaction] = await Global.exe(mysql.build(query)
         .promise());
 
@@ -148,16 +146,42 @@ const index = async (req,res,next)=>{
 }
 
 const show = async (req, res, next) => {
+    let {
+        user
+    } = req.query
     let id = req.params.id;
-    let where = ` WHERE transactions.deleted is NULL AND transactions.id = '${id}'`;
+    let data = [];
+    let where = ` WHERE transactions.deleted is NULL AND transactions.id = '${id}' `;
+
+    if (user) {
+        where += `
+            AND user_id='${user}'
+        `;
+    }
+
     let query = `
             SELECT \
-            transactions.* \
+            transactions.id, \
+            transactions.code, \
+            transactions.user_id, \
+            CONCAT(transactions.first_name,' ',transactions.last_name) as fullname, \
+            transactions.delivery_address, \
+            transactions.contact_number, \
+            bookingItem.product_id, \
+            bookingItem.quantity, \
+            product.name, \
+            product.price, \
+            product.image, \
+            transactions.created
             FROM transactions transactions \
+            LEFT JOIN bookingItems bookingItem \
+            ON bookingItem.transaction_id = transactions.code \
+            LEFT JOIN products product \
+            ON product.id = bookingItem.product_id \
             ${where} `;
 
-
-    let [err, role] = await Global.exe(mysql.build(query).promise());
+    
+    let [err, transaction] = await Global.exe(mysql.build(query).promise());
 
     if (err) {
         return Global.fail(res, {
@@ -166,15 +190,24 @@ const show = async (req, res, next) => {
         }, 500);
     }
 
-    if (!role.length) {
+    if (!transaction.length) {
         return Global.fail(res, {
             message: 'No results found',
             context: 'Database returns no data'
         }, 404);
     }
 
+    transaction.map((item)=>[
+        data.push({
+
+            total_euro: item.total_euro,
+            total_usd: item.total_usd,
+            total : item.total
+        })
+    ])
+
     return Global.success(res, {
-        data: role,
+        data: transaction,
         message: 'Successfully fetched data',
         context: 'Successfully retrieved'
     }, 200);
