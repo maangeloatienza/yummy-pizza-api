@@ -262,6 +262,8 @@ const update = async (req, res, next) => {
 
     let [error, verify] = await Global.exe(BookingItem.verify(res, `id = '${id}' AND quantity >= 1`));
 
+    
+
     if (error) {
         return Global.fail(res, {
             message: 'Error verifying booking item',
@@ -273,7 +275,7 @@ const update = async (req, res, next) => {
         id: id,
         transaction : false
     }));
-    console.log('BOOKING ITEM UP', bookingItemUp)
+
 
     if (fail) {
         return Global.fail(res, {
@@ -284,7 +286,7 @@ const update = async (req, res, next) => {
 
     data.subtotal = data.quantity ? data.quantity * bookingItemUp[0].price : bookingItemUp[0].subtotal;
 
-
+    data.deleted = data.quantity <=0 ? data.deleted = new Date() : null;
     let [err, booking] = await Global.exe(mysql.build(query, data).promise());
 
     if (err) {
