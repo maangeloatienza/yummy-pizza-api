@@ -260,7 +260,7 @@ const update = async (req, res, next) => {
         }, 500);
     }
 
-    let [error, verify] = await Global.exe(BookingItem.verify(res, `id = '${id}' AND quantity >= 1`));
+    let [error, verify] = await Global.exe(BookingItem.verify(res, `id = '${id}' AND quantity >= 1 AND deleted IS null`));
 
     
 
