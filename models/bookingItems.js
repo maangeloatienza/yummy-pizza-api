@@ -91,7 +91,7 @@ const verify = async (res, where) => {
 
 const validate = async (res, body) => {
     
-    let where = ` WHERE deleted IS NOT NULL AND transaction_id IS NULL AND product_id = '${body.product_id}' `;
+    let where = ` WHERE deleted IS NULL AND transaction_id IS NULL AND product_id = '${body.product_id}' AND quantity > 0`;
     
     
     if(body.user_id){
