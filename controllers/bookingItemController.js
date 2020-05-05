@@ -283,12 +283,10 @@ const update = async (req, res, next) => {
             context: fail
         }, 500);
     }
+    data.deleted = data.quantity ? null : new Date();
 
     data.subtotal = data.quantity ? data.quantity * bookingItemUp[0].price : bookingItemUp[0].subtotal;
 
-    data.deleted = !data.quantity ? new Date() : null;
-
-    console.log('UPDATE',data);
     let [err, booking] = await Global.exe(mysql.build(query, data).promise());
 
     if (err) {
