@@ -84,3 +84,14 @@ CREATE TABLE transactions (
   `updated` DATETIME  NULL,
   `deleted` DATETIME  NULL
 );
+
+CREATE TABLE banners (
+  `id` VARCHAR(64) NOT NULL PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `image` LONGTEXT NOT NULL,
+  `showcase` BOOLEAN DEFAULT true,
+  `created` DATETIME  NULL,
+  `updated` DATETIME  NULL,
+  `deleted` DATETIME  NULL
+);
+

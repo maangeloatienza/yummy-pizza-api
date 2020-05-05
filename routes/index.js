@@ -40,13 +40,13 @@ router.put ('/bookings/delete/:id',                auth,__.bookingController.rem
 router.get ('/booking-items',                           __.bookingItemController.index);
 router.post('/booking-items',                           __.bookingItemController.store);
 router.put ('/booking-items/:id',                       __.bookingItemController.update);
-router.delete('/booking-items/delete/:id',                __.bookingItemController.remove);
+router.delete('/booking-items/delete/:id',              __.bookingItemController.remove);
 
 // TRANSACTIONS
-router.get ('/transactions',                           __.transactionController.index);
-router.get ('/transactions/:id',                       __.transactionController.show);
-router.post('/transactions',                           __.transactionController.store);
-router.put ('/transactions/delete/:id',                __.transactionController.remove);
+router.get ('/transactions',                            __.transactionController.index);
+router.get ('/transactions/:id',                        __.transactionController.show);
+router.post('/transactions',                            __.transactionController.store);
+router.put ('/transactions/delete/:id',                 __.transactionController.remove);
 
 // PRODUCTS
 router.get ('/products',                                __.productController.index);
@@ -55,6 +55,12 @@ router.put ('/products/:id',      upload.single('file'),__.productController.upd
 router.post('/products',          upload.single('file'),__.productController.store);
 router.put ('/products/delete/:id',                     __.productController.remove);
 
+// BANNERS
+router.get ('/banners',                                 __.bannerController.index);
+router.get ('/banners/:id',                             __.bannerController.show);
+router.put ('/banners/:id',      upload.single('file'), __.bannerController.update);
+router.post('/banners',          upload.single('file'), __.bannerController.store);
+router.put ('/banners/delete/:id',                      __.bannerController.remove);
 
 
 module.exports = router;
