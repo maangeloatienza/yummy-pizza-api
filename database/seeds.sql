@@ -48,6 +48,7 @@ CREATE TABLE products (
   `id` VARCHAR(64) NOT NULL PRIMARY KEY,
   `name` VARCHAR(64) NOT NULL,
   `price` FLOAT NOT NULL,
+  `description` LONGTEXT NULL,
   `image` VARCHAR(255) NULL,
   `availability` BOOLEAN NOT NULL DEFAULT true,
   `created` DATETIME  NULL,

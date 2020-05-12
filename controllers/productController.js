@@ -16,6 +16,7 @@ cloudinary.config({
 const reqBody = {
     name: '',
     price: 0.0,
+    _description : '',
     _availability: 1,
     _image : ''
 };
@@ -23,6 +24,7 @@ const reqBody = {
 const optBody = {
     _name: '',
     _price: 0.0,
+    _description: '',
     _availability: 0,
     _image : ''
 };
