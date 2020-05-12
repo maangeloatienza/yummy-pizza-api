@@ -48,6 +48,7 @@ CREATE TABLE products (
   `id` VARCHAR(64) NOT NULL PRIMARY KEY,
   `name` VARCHAR(64) NOT NULL,
   `price` FLOAT NOT NULL,
+  `description` LONGTEXT NULL,
   `image` VARCHAR(255) NULL,
   `availability` BOOLEAN NOT NULL DEFAULT true,
   `created` DATETIME  NULL,
@@ -84,3 +85,14 @@ CREATE TABLE transactions (
   `updated` DATETIME  NULL,
   `deleted` DATETIME  NULL
 );
+
+CREATE TABLE banners (
+  `id` VARCHAR(64) NOT NULL PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `image` LONGTEXT NOT NULL,
+  `showcase` BOOLEAN DEFAULT true,
+  `created` DATETIME  NULL,
+  `updated` DATETIME  NULL,
+  `deleted` DATETIME  NULL
+);
+

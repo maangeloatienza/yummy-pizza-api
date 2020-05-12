@@ -151,7 +151,7 @@ const show = async (req, res, next) => {
     } = req.query
     let id = req.params.id;
     let data = [];
-    let where = ` WHERE transactions.deleted is NULL AND transactions.id = '${id}' `;
+    let where = ` WHERE transactions.deleted is NULL AND transactions.id = '${id}' and bookingItem.quantity > 0`;
 
     if (user) {
         where += `
