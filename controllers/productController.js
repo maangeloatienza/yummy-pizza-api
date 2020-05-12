@@ -140,6 +140,7 @@ const show = async (req, res, next) => {
             product.price, \
             product.availability, \
             product.image, \
+            product.description, \
             product.created, \
             product.updated, \
             product.deleted \
