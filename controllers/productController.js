@@ -53,9 +53,7 @@ const index = async (req, res, next) => {
 
     if (search) {
         where += `
-            AND product.name LIKE '%${search}%' \
-            OR product.price LIKE '%${search}%' \
-            OR product.availability LIKE '%${search}%' \
+            AND product.name LIKE '%${search}%'
         `;
     }
 
