@@ -92,6 +92,7 @@ const index = async (req, res, next) => {
             product.name, \
             product.price, \
             product.availability, \
+            product.description, \
             product.image, \
             product.created, \
             product.updated, \
