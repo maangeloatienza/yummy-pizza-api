@@ -20,7 +20,7 @@ const reqBody = {
 };
 
 const optBody = {
-    name: '',
+    _name: '',
     _showcase: 1,
     _image: ''
 };
